@@ -1,132 +1,110 @@
-// import React, { useEffect, useState } from 'react';
-// import { getMeetings } from '../api/meet.api';
+import React, { useContext, useEffect, useState } from 'react';
+import { getMeetings } from '../api/meet.api';
+// import { Link } from 'react-router-dom';
+// import { MeetingContext } from '../context/meet.context'
+interface Meeting {
+    _id: number;
+    userId: number;
+    time: string;
+    date: string;
+    place: string;
+    common: string;
+}
 
-// interface Service {
-//     _id: number;
-//     userId: number;
-//     time: string;
-//     date: string;
-//     place: string;
-// }
+export const Meeting = () => {
+    const [meeting, setMeeting] = useState<Meeting[]>([]);
+    const userId = localStorage.getItem('userId') || null;
+    // const [selectedMeeting, setSelectedMeeting] = useState<Meeting | null>(null);
+    // const meetContext = useContext(MeetingContext)
+    const [selectedMeetingId, setSelectedMeetingId] = useState<number | null>(null);
 
-// export const Meeting = () => {
-//     const [meeting, setMeeting] = useState<Service[]>([]);
-//     const [userId, setUserId] = useState<number | null>(null); // Initialize with null
-
-//     useEffect(() => {
-//         const storedToken = localStorage.getItem('auth-token');
-//         let extractedUserId = null;
-//         if (storedToken) {
-//             try {
-//                 const decodedToken = jwt.decode(storedToken);
-//                 extractedUserId = decodedToken._id; // Assuming '_id' is the claim for user ID
-//             } catch (error) {
-//                 console.error('Error decoding token:', error);
-//             }
-//         }
-
-//         // Update userId state with extracted ID
-//         setUserId(extractedUserId);
-
-//         // Dependency array: [] (empty) - runs only once on component mount
-//     }, []);
-
-
-//     useEffect(() => {
-//         const fetchData = async () => {
-//             if (userId !== null) {
-//                 try {
-//                     const data = await getMeetings(userId);
-//                     setMeeting(data);
-//                 } catch (error) {
-//                     console.error('Error fetching services:', error);
-//                 }
-//             }
-//         };
-
-//         fetchData();
-//     }, [userId]); // Fetch data only when userId changes
-//     // const userId: number = ;
+    useEffect(() => {
+        const fetchData = async () => {
+            if (userId != null) {
+                try {
+                    const data = await getMeetings(userId);
+                    setMeeting(data);
+                } catch (error) {
+                    console.error('Error fetching services:', error);
+                }
+            }
+        };
+        fetchData();
+    }, [userId]);
 
 
-//     // useEffect(() => {
-//     //     const fetchData = async () => {
-//     //         try {
-//     //             const data = await getMeetings(userId);
-//     //             setMeeting(data);
-//     //         } catch (error) {
-//     //             console.error('Error fetching services:', error);
-//     //         }
-//     //     };
-//     //     fetchData();
-//     // }, []);
+    // function handleMeetingClick(meeting: Meeting): void {
+    // }
+
+    // function handleClick(key: any): void {
+    //     changeMeetContext(key);
+    //     meetContext.meeting?._id
+    //     alert(key)
+    // }
+    // const getSelectedMeeting = () => {
+    //     return meeting.find((m) => m._id === selectedMeetingId);
+    // };
+    // const handleMeetingClick = (meeting: Meeting): void => {
+    //     setSelectedMeetingId(meeting._id);
+    // };
+
+    return (
+        <div>
+            <h1>Your Meetings</h1>
+            {meeting.length ? (
+                <ul>
+                    {meeting.map((meet) => (
+                        <div key={meet._id}>
+                            <strong>Time: </strong>  {meet.time}
+                            <strong>Date: </strong>  {meet.date}
+                            <strong>Place: </strong>  {meet.place}
+                            <strong>Common: </strong>  {meet.common}
+
+                            {/* <button><Link to={'/common'}>לשליחת פרטי פגישה</Link></button>
+                            <strong>Common: </strong> */}
+                        </div>
+
+
+                    ))}
+                </ul>
+            ) : (
+                <h2>You don't have any meetings yet.</h2>
+            )}
+            {/* {selectedMeetingId && (
+                <MeetingDetails meeting={meeting.find((m) => m._id === selectedMeetingId)} />
+            )} */}
+        </div>
+    );
+};
+
+// קומפוננטת פרטי פגישה
+// const MeetingDetails = ({ meetingId }: { meetingId: number }) => {
+//     return (
+//         <div>
+//             <h2>פרטי פגישה</h2>
+//             <p>מזהה פגישה: {meetingId}</p>
+//         </div>
+//     );
+// };
+// const MeetingDetails = ({ meeting }: { meeting: Meeting | undefined }) => {
+//     if (meeting === undefined) {
+//         return <div>No meeting found</div>;
+//     }
 
 //     return (
 //         <div>
-//             <h1>your meetings</h1>
-//             {meeting ? <ul>
-//                 {meeting.map(meeting => (
-//                     <div key={meeting._id}>
-//                         <h4>Time: {meeting.time} </h4>  <strong>Date:</strong> {meeting.date}, <strong>Place:</strong> {meeting.place}
-//                     </div>
-//                 ))}
-//             </ul> : <h4>אין לך עדיין פגישות</h4>}
+//             <label></label>
+//             <textarea
+
+//                 placeholder="הזן הערה כאן"
+
+//             />
+
 //         </div>
 //     );
 // };
 
-// export default Meeting;
-import React, { useEffect, useState } from 'react';
-import { getMeetings } from '../api/meet.api';
-
-interface Service {
-  _id: number;
-  userId: number;
-  time: string;
-  date: string;
-  place: string;
-}
-
-export const Meeting = () => {
-  const [meeting, setMeeting] = useState<Service[]>([]);
-  const userId = localStorage.getItem('userId')||null;
-
-  useEffect(() => {
-    const fetchData = async () => {
-        console.log(userId);
-        
-      if (userId != null) {
-        try {
-          const data = await getMeetings(userId);
-          setMeeting(data);
-        } catch (error) {
-          console.error('Error fetching services:', error);
-        }
-      }
-    };
-
-    fetchData();
-  }, [userId]);
-
-  return (
-    <div>
-      <h1>Your Meetings</h1>
-      {meeting.length ? (
-        <ul>
-          {meeting.map((meeting) => (
-            <div key={meeting._id}>
-              <h4>Time: {meeting.time}</h4>
-              <strong>Date:</strong> {meeting.date}, <strong>Place:</strong>{' '}
-              {meeting.place}
-            </div>
-          ))}
-        </ul>
-      ) : (
-        <h2>You don't have any meetings yet.</h2>
-      )}
-    </div>
-  );
-};
-
 export default Meeting;
+
+
 

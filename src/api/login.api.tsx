@@ -26,9 +26,9 @@ const logout = () => {
 const register = async (name: any, email: any, password: any) => {
     try {
         const response = await axios.post(`${API_URL}/register`, { name, email, password });
-        localStorage.setItem('auth-token', response.data.response.token);
+        localStorage.setItem('auth-token', response.data.token);
         localStorage.setItem('user-name', name);
-        localStorage.setItem('userId', response.data.response.userId);
+        localStorage.setItem('userId', response.data.userId);
         console.log({ name, email, password });
         console.log('response.data', response.data);
         return response.data;

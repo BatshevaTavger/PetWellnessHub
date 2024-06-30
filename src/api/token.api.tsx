@@ -23,5 +23,4 @@ const isAdmin = () => {
     return false; 
 };
 
-
-export {axiosConfig,isAdmin} ;
+export {axiosConfig, isAdmin} ;

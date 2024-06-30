@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getServices } from '../api/services.api';
+import { Link } from 'react-router-dom';
 
 interface Service {
     _id: number;
@@ -28,7 +29,9 @@ export const Services = () => {
             <ul>
                 {services.map(service => (
                     <div key={service._id}>
-                        <h4>Description: {service.description} </h4>  <strong>Price:</strong> {service.price}
+                        <h4>Description: {service.description} </h4> 
+                         <strong>Price:</strong> {service.price}
+                         <button><Link to={'/appointmentForm'}>To קביעת תור</Link></button>
                     </div>
                 ))}
             </ul>

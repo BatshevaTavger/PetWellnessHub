@@ -11,6 +11,8 @@ import { SignUp } from './components/signup.component.tsx';
 import SignIn from './components/signIn.component.tsx';
 import Services from './components/services.component.tsx';
 import Meeting from './components/meeting.component.tsx';
+import AppointmentForm from './components/appointmentForm.component.tsx';
+import Common from './components/common.component.tsx';
 
 
 const router = createBrowserRouter([
@@ -29,6 +31,12 @@ const router = createBrowserRouter([
   }, {
     path: '/meeting',
     Component: Meeting,
+  }, {
+    path: '/appointmentForm',
+    Component: AppointmentForm,
+  }, {
+    path: '/common',
+    Component: Common,
   }
 ]);
 
