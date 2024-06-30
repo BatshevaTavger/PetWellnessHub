@@ -1,18 +1,37 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 import { getServices } from '../api/services.api';
 
+interface Service {
+    _id: number;
+    price: string;
+    description: string;
+}
+
 export const Services = () => {
-    const navigate = useNavigate();
-    const data = getServices()
-    // alert(data)
-    console.log(data)
+    const [services, setServices] = useState<Service[]>([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const data = await getServices();
+                setServices(data);
+            } catch (error) {
+                console.error('Error fetching services:', error);
+            }
+        };
+        fetchData();
+    }, []);
+
     return (
         <div>
-            <h1>our services</h1>
-        <ul>
-            <li></li>
-        </ul>
+            <h1>our Services</h1>
+            <ul>
+                {services.map(service => (
+                    <div key={service._id}>
+                        <h4>Description: {service.description} </h4>  <strong>Price:</strong> {service.price}
+                    </div>
+                ))}
+            </ul>
         </div>
     );
 };

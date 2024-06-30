@@ -21,7 +21,8 @@ const Home = () => {
                 <button><Link to={'/sign-in'}>To connect</Link></button> 
                 {userName ? <button onClick={logoutFunc}><Link to={'/'}>To logout</Link></button> : <h1></h1>}
                 {userName ? <h1>ברוך הבא, {userName}!</h1> : <h1></h1>}
-                {userName ? <h1>השירותים שלנו <button><Link to={'/services'}>our services</Link></button></h1> : <h1></h1>}
+                {userName ? <h5>השירותים שלנו <button><Link to={'/services'}>our services</Link></button></h5> : <h1></h1>}
+                {userName ? <h5>הפגישות שלך<button><Link to={'/meeting'}>your meeting</Link></button></h5> : <h1></h1>}
             </div>
         </div>
     );

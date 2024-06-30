@@ -10,6 +10,7 @@ import Home from './components/home.component.tsx';
 import { SignUp } from './components/signup.component.tsx';
 import SignIn from './components/signIn.component.tsx';
 import Services from './components/services.component.tsx';
+import Meeting from './components/meeting.component.tsx';
 
 
 const router = createBrowserRouter([
@@ -25,6 +26,9 @@ const router = createBrowserRouter([
   }, {
     path: '/services',
     Component: Services,
+  }, {
+    path: '/meeting',
+    Component: Meeting,
   }
 ]);
 
