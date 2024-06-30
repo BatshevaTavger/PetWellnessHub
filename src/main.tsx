@@ -14,7 +14,6 @@ import Meeting from './components/meeting.component.tsx';
 import AppointmentForm from './components/appointmentForm.component.tsx';
 import Common from './components/common.component.tsx';
 
-
 const router = createBrowserRouter([
   {
     path: '/',

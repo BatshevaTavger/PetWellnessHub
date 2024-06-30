@@ -1,7 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { getMeetings } from '../api/meet.api';
-// import { Link } from 'react-router-dom';
-// import { MeetingContext } from '../context/meet.context'
 interface Meeting {
     _id: number;
     userId: number;
@@ -14,9 +12,6 @@ interface Meeting {
 export const Meeting = () => {
     const [meeting, setMeeting] = useState<Meeting[]>([]);
     const userId = localStorage.getItem('userId') || null;
-    // const [selectedMeeting, setSelectedMeeting] = useState<Meeting | null>(null);
-    // const meetContext = useContext(MeetingContext)
-    const [selectedMeetingId, setSelectedMeetingId] = useState<number | null>(null);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -32,22 +27,6 @@ export const Meeting = () => {
         fetchData();
     }, [userId]);
 
-
-    // function handleMeetingClick(meeting: Meeting): void {
-    // }
-
-    // function handleClick(key: any): void {
-    //     changeMeetContext(key);
-    //     meetContext.meeting?._id
-    //     alert(key)
-    // }
-    // const getSelectedMeeting = () => {
-    //     return meeting.find((m) => m._id === selectedMeetingId);
-    // };
-    // const handleMeetingClick = (meeting: Meeting): void => {
-    //     setSelectedMeetingId(meeting._id);
-    // };
-
     return (
         <div>
             <h1>Your Meetings</h1>
@@ -59,24 +38,23 @@ export const Meeting = () => {
                             <strong>Date: </strong>  {meet.date}
                             <strong>Place: </strong>  {meet.place}
                             <strong>Common: </strong>  {meet.common}
-
-                            {/* <button><Link to={'/common'}>לשליחת פרטי פגישה</Link></button>
-                            <strong>Common: </strong> */}
                         </div>
-
-
                     ))}
                 </ul>
             ) : (
                 <h2>You don't have any meetings yet.</h2>
             )}
-            {/* {selectedMeetingId && (
-                <MeetingDetails meeting={meeting.find((m) => m._id === selectedMeetingId)} />
-            )} */}
+
         </div>
     );
 };
 
+export default Meeting;
+
+// ----------------
+// const [selectedMeeting, setSelectedMeeting] = useState<Meeting | null>(null);
+// const meetContext = useContext(MeetingContext)
+// const [selectedMeetingId, setSelectedMeetingId] = useState<number | null>(null);
 // קומפוננטת פרטי פגישה
 // const MeetingDetails = ({ meetingId }: { meetingId: number }) => {
 //     return (
@@ -104,7 +82,28 @@ export const Meeting = () => {
 //     );
 // };
 
-export default Meeting;
+{/* {selectedMeetingId && (
+                <MeetingDetails meeting={meeting.find((m) => m._id === selectedMeetingId)} />
+            )} */}
 
 
 
+{/* <button><Link to={'/common'}>לשליחת פרטי פגישה</Link></button>
+                            <strong>Common: </strong> */}
+
+
+
+// function handleMeetingClick(meeting: Meeting): void {
+// }
+
+// function handleClick(key: any): void {
+//     changeMeetContext(key);
+//     meetContext.meeting?._id
+//     alert(key)
+// }
+// const getSelectedMeeting = () => {
+//     return meeting.find((m) => m._id === selectedMeetingId);
+// };
+// const handleMeetingClick = (meeting: Meeting): void => {
+//     setSelectedMeetingId(meeting._id);
+// };
