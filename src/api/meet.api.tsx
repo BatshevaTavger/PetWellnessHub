@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { axiosConfig, isAdmin } from "./token.api";
+import { login } from './login.api';
 const API_URL = 'http://localhost:8001';
 
 axiosConfig();
@@ -24,7 +25,6 @@ const addMeeting = async (userId: any, data: any) => {
             data: response.data,
             status: response.status
         }
-
         if (response.status === 200)
             return responseJson; 
         if (response.status === 201)
@@ -38,5 +38,28 @@ const addMeeting = async (userId: any, data: any) => {
     }
 };
 
-export { getMeetings, addMeeting };
+// for admin
+const getAllMeetings = async () => {
+    try {
+        const response = await axios.get(`${API_URL}/Meet/`);
+        console.log(response);
+        return response.data;
+    } catch (error) {
+        console.error('Error get meeting:', error);
+        throw error;
+    }
+};
+
+const delateMeeting = async (id: number) => {
+    try {
+        const response = await axios.delete(`${API_URL}/Meet/${id}`);
+        console.log(response);
+        return response.data;
+    } catch (error) {
+        console.error('Error get meeting:', error);
+        throw error;
+    }
+};
+
+export { getMeetings, addMeeting, getAllMeetings, delateMeeting };
 

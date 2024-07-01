@@ -13,6 +13,9 @@ import Services from './components/services.component.tsx';
 import Meeting from './components/meeting.component.tsx';
 import AppointmentForm from './components/appointmentForm.component.tsx';
 import Common from './components/common.component.tsx';
+import Manager from './components/manager/manager.component.tsx';
+import ManagerMeeting, { MeetingManager } from './components/manager/meetingManager.component.tsx';
+import Update from './components/manager/update.component.tsx';
 
 const router = createBrowserRouter([
   {
@@ -36,7 +39,20 @@ const router = createBrowserRouter([
   }, {
     path: '/common',
     Component: Common,
-  }
+  }, {
+    path: '/manager',
+    Component: Manager,
+    // children: [
+
+    // ]
+  }, {
+    path: '/manager/meetingManager',
+    Component: MeetingManager,
+  },{
+    path: '/update',
+    Component: Update,
+  },
+
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
