@@ -26,5 +26,28 @@ const addService = async ( description:any, price:any) => {
     }
 };
 
-export { getServices, addService };
+// for manager
+const deleteService = async (id: number) => {
+    try {
+        const response = await axios.delete(`${API_URL}/Service/${id}`);
+        console.log(response);
+        return response.data;
+    } catch (error) {
+        console.error('Error delete service:', error);
+        throw error;
+    }
+};
+
+const updateService = async (id: number, price: string, description: string) => {
+    try {
+        const response = await axios.put(`${API_URL}/Service/${id}`, { description, price });
+        console.log(response);
+        return response.data;
+    } catch (error) {
+        console.error('Error update service:', error);
+        throw error;
+    }
+};
+
+export { getServices, addService, deleteService, updateService };
 

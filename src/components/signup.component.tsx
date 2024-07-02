@@ -23,7 +23,7 @@ export const SignUp = () => {
     return (
         <div>
             <h4>Enter new user Details</h4>
-            <form onSubmit={handleSubmit}>
+            <form className="custom-form" onSubmit={handleSubmit}>
                 <input type="text" placeholder="name" name="name" value={name} onChange={(e) => setName(e.target.value)} /> <br />
                 <input type="text" placeholder="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} /> <br />
                 <input type="password" placeholder="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} /> <br />

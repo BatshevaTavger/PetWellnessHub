@@ -56,10 +56,20 @@ const delateMeeting = async (id: number) => {
         console.log(response);
         return response.data;
     } catch (error) {
-        console.error('Error get meeting:', error);
+        console.error('Error delete meeting:', error);
         throw error;
     }
 };
 
-export { getMeetings, addMeeting, getAllMeetings, delateMeeting };
+const updateMeeting = async (id: number, place: string, time:string, date:string)=> {
+        try {
+            const response = await axios.put(`${API_URL}/Meet/${id}`, { time, date, place });
+            return response.data;
+        } catch (error) {
+            console.error('Error update meeting:', error);
+            throw error;
+        }
+    };
+
+export { getMeetings, addMeeting, getAllMeetings, delateMeeting ,updateMeeting};
 

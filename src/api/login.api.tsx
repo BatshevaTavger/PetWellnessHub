@@ -9,8 +9,7 @@ const login = async (name: any, password: any) => {
     try {
         const response = await axios.post(`${API_URL}/Login`, { name, password });
         if (response) {
-            // setUser( name, response.data.userId )
-            alert(response)
+            console.log(response, 'res')
             localStorage.setItem('auth-token', response.data.token);
             localStorage.setItem('user-name', name);
             localStorage.setItem('userId', response.data.userId);
@@ -46,5 +45,15 @@ const register = async (name: any, email: any, password: any) => {
         throw error;
     }
 };
+
+const checkAdminStatus = async (token: any) => {
+    try {
+      const response = await axios.post(`${API_URL}`, { token });
+      return response.data.isAdmin;
+    } catch (error) {
+      console.error('Error checking admin status:', error);
+      return false;
+    }
+  };
 
 export { login, logout, register };

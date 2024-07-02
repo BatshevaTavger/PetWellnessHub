@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { addMeeting } from '../api/meet.api';
 import { Link } from 'react-router-dom';
+import Form from 'react-bootstrap/Form';
 
 const AppointmentForm = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -43,7 +44,7 @@ const AppointmentForm = () => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form className="custom-form" onSubmit={handleSubmit}>
         <label>תאריך:</label>
         <input type="date" value={selectedDate.toISOString().substring(0, 10)} onChange={handleDateChange} />
         <br />

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Route, Router } from 'react-router-dom';
-import Manager from './manager/manager.component';
-import MeetingManager from './manager/meetingManager.component';
+// import 'bootstrap/dist/css/bootstrap.min.css';
+// import './index.css';
 
 const Home = () => {
     const [userName, setUserName] = useState('');
@@ -34,9 +34,6 @@ const Home = () => {
                     </>
                 ) : null}
             </div>
-            <h1>למנהל</h1>
-            <button><Link to={'/manager'}>manager</Link></button>
-
         </div>
     );
 };

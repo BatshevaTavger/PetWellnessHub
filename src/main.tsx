@@ -12,10 +12,11 @@ import SignIn from './components/signIn.component.tsx';
 import Services from './components/services.component.tsx';
 import Meeting from './components/meeting.component.tsx';
 import AppointmentForm from './components/appointmentForm.component.tsx';
-import Common from './components/common.component.tsx';
 import Manager from './components/manager/manager.component.tsx';
 import ManagerMeeting, { MeetingManager } from './components/manager/meetingManager.component.tsx';
-import Update from './components/manager/update.component.tsx';
+import ServicesManager from './components/manager/servicesManager.component.tsx';
+import usersManager from './components/manager/usersManager.component.tsx';
+import { CssBaseline } from '@mui/material';
 
 const router = createBrowserRouter([
   {
@@ -36,28 +37,25 @@ const router = createBrowserRouter([
   }, {
     path: '/appointmentForm',
     Component: AppointmentForm,
-  }, {
-    path: '/common',
-    Component: Common,
-  }, {
+  },{
     path: '/manager',
     Component: Manager,
-    // children: [
-
-    // ]
   }, {
     path: '/manager/meetingManager',
     Component: MeetingManager,
-  },{
-    path: '/update',
-    Component: Update,
+  }, {
+    path: '/manager/servicesManager',
+    Component: ServicesManager,
+  }, {
+    path: '/manager/usersManager',
+    Component: usersManager,
   },
-
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <App />
+    <CssBaseline />
     <RouterProvider router={router} />
   </React.StrictMode>,
 )
