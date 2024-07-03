@@ -3,7 +3,6 @@ import axios from 'axios';
 // import { UserContext } from '../context/user.context';
 const API_URL = 'http://localhost:8001';
 
-
 const login = async (name: any, password: any) => {
     // const { setUser } = useContext(UserContext);
     try {
