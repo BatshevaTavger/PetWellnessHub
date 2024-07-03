@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { axiosConfig, isAdmin } from "./token.api";
-import { login } from './login.api';
 const API_URL = 'http://localhost:8001';
 
 axiosConfig();
