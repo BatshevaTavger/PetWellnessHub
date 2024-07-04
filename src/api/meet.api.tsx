@@ -4,7 +4,7 @@ const API_URL = 'http://localhost:8001';
 
 axiosConfig();
 
-const getMeetings = async (userId: string) => {
+const getMeetings = async (userId: any) => {
     try {
         const response = await axios.get(`${API_URL}/Meet/${userId}`);
         return response.data;
