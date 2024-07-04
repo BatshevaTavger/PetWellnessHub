@@ -1,36 +1,44 @@
-// import React, { createContext, useState } from 'react';
 
+import { ReactNode, createContext, useEffect, useState } from 'react';
+import { User } from '../interfaces/user.interface';
 
-// export const UserContext = createContext();
+export type UserContext = {
+    currentUser: User;
+    setCurrentUser: (user: User) => void
+}
 
-// export const UserProvider = ({ children }) => {
-//     const [user, setUser] = useState(null);
+const initialCurrentUser: User = {
+    _id: 0,
+    name: '',
+    password: '',
+    email: '',
+    isAdmin: true,
+};
 
-//     return (
-//         <UserContext.Provider value={{ user, setUser }}>
-//             {children}
-//         </UserContext.Provider>
-//     );
-// };
+const InitialContext: UserContext = {
+    currentUser: initialCurrentUser,
+    setCurrentUser: () => { }
+}
 
-// ------------ 
+export const CurrentContextUser = createContext<UserContext>(InitialContext);
 
-// import { createContext, useState } from "react";
-// import { User } from "../interfaces/user.interface";
+export const CurrentUserProvider = ({ children }: { children: ReactNode }) => {
+    const [currentUser, setCurrentUsers] = useState<User>(initialCurrentUser);
+    
+    useEffect(() => {
+        localStorage.setItem('currentUser', JSON.stringify(currentUser))
+    }, [currentUser]);
 
-// interface UserContextValue {
-//   user: User | null;
-//   setUser: (userName: string|null, userId: number|null) => void;
-// }
-
-// export const UserContext = createContext<UserContextValue>(null);
-
-// export const UserProvider = ({ children }) => {
-//   const [user, setUser] = useState<User | null>(null); // Specify initial user type
-
-//   return (
-//     <UserContext.Provider value={{ user, setUser }}>
-//       {children}
-//     </UserContext.Provider>
-//   );
-// };
+    const setCurrentUser = (user: User) => {
+        alert('hii')
+        console.log(user, 'in context')
+        setCurrentUsers(user);
+        console.log(currentUser, 'oioioio')
+    }
+    
+    return (
+        <CurrentContextUser.Provider value={{ currentUser, setCurrentUser }}>
+            {children}
+        </CurrentContextUser.Provider>
+    );
+};
