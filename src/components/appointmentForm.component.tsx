@@ -1,7 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { addMeeting } from '../api/meet.api';
 import { Link } from 'react-router-dom';
-import Form from 'react-bootstrap/Form';
 import { CurrentContextUser } from '../context/user.context';
 
 const AppointmentForm = () => {
@@ -15,7 +14,7 @@ const AppointmentForm = () => {
 
   const userId = currentUser._id;
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: any) => {
     event.preventDefault();
 
     const data = {
@@ -31,16 +30,16 @@ const AppointmentForm = () => {
     if (response.status == 200)
       setAppointmentMessage(`נקבע לך תור בשעה ${selectedTime} בתאריך ${selectedDate.toLocaleDateString()} ב ${selectedLocation}.`);
   };
-  const handleLocationChange = (event) => {
+  const handleLocationChange = (event: any) => {
     setSelectedLocation(event.target.value);
   };
-  const handleTimeChange = (event) => {
+  const handleTimeChange = (event: any) => {
     setSelectedTime(event.target.value);
   };
-  const handleDateChange = (event) => {
+  const handleDateChange = (event: any) => {
     setSelectedDate(new Date(event.target.value));
   };
-  const handleNoteChange = (event) => {
+  const handleNoteChange = (event: any) => {
     setNoteToBusiness(event.target.value);
   };
   
