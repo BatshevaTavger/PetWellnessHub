@@ -6,6 +6,7 @@ This project is a pet veterinary management system that allows users to register
 
 To run the project, use the following command:
 `npm run dev`
+This project relies on another Node.js project to act as a server. You can find the server project at the following repository link: https://github.com/AyalaDiamant/Final-Project-Node
 
 Admin credentials
 
@@ -36,19 +37,12 @@ Admin interface
 - Express.js
 - MongoDB
 - HTML/CSS
-- JavaScript
+- typeScript
+- @material - design library
 
-## Folder structure
-
-- /src: contains the source code of the project
-- /public: Contains static files such as HTML, CSS and JavaScript on the client side
-- /models: Contains database models
-- /routes: contains route settings
-- /views: Contains views for the application
 
 ## How to use
-
-Lay down the reservoir
+Pull the reservoir
 Install dependencies using `npm install`
 Configure the MongoDB connection
 Run the project using `npm run dev`
