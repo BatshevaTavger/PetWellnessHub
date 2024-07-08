@@ -30,10 +30,7 @@ export const CurrentUserProvider = ({ children }: { children: ReactNode }) => {
     }, [currentUser]);
 
     const setCurrentUser = (user: User) => {
-        alert('hii')
-        console.log(user, 'in context')
         setCurrentUsers(user);
-        console.log(currentUser, 'oioioio')
     }
     
     return (

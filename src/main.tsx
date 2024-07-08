@@ -17,6 +17,7 @@ import ServicesManager from './components/manager/servicesManager.component.tsx'
 import usersManager from './components/manager/usersManager.component.tsx';
 import { CssBaseline } from '@mui/material';
 import { CurrentUserProvider } from './context/user.context.tsx';
+import MeetingManager from './components/manager/meetingManager.component.tsx';
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,9 @@ const router = createBrowserRouter([
   }, {
     path: '/manager/servicesManager',
     Component: ServicesManager,
+  },{
+    path: 'manager/meetingManager',
+    Component: MeetingManager,
   }, {
     path: '/manager/usersManager',
     Component: usersManager,

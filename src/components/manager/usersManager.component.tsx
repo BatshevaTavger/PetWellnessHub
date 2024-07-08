@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { User } from '../../interfaces/user.interface';
 import { delateUser, getUsers, updateUser } from '../../api/user.api'
+import { Button, Typography, Container, List, ListItem, ListItemText, TextField, Box, Paper } from '@mui/material';
 
 export const usersManager = () => {
     const [users, setUsers] = useState<User[]>([]);
@@ -47,41 +48,66 @@ export const usersManager = () => {
     };
 
     return (
-        <div>
-            <h1>All Users</h1>
-            <ul>
+        <Container>
+            <Typography variant="h4" component="h1" gutterBottom>
+                All Users
+            </Typography>
+            <List>
                 {users.map((user) => (
-                    <div key={user._id}>
-                        {user.isAdmin ? null : ( 
-                            <>
-                                <strong>Name: </strong> {user.name}
-                                <strong>Email: </strong> {user.email}
-                                <button onClick={() => deleteThisUser(user._id)}>Delete user</button>
-                                <button onClick={() => updateThisUser(user._id)}>Update user</button>
-                            </>
-                        )}
-                    </div>
+                    user.isAdmin ? null : (
+                        <Paper elevation={3} key={user._id} style={{ marginBottom: '16px', padding: '16px', borderRadius: '8px' }}>
+                            <ListItem>
+                                <ListItemText
+                                    primary={
+                                        <>
+                                            <Typography variant="body1"><strong>Name: </strong>{user.name}</Typography>
+                                            <Typography variant="body1"><strong>Email: </strong>{user.email}</Typography>
+                                        </>
+                                    }
+                                />
+                                <Button variant="contained" color="primary" onClick={() => updateThisUser(user._id)} style={{ marginRight: '8px' }}>
+                                    Update user
+                                </Button>
+                                <Button variant="contained" color="secondary" onClick={() => deleteThisUser(user._id)}>
+                                    Delete user
+                                </Button>
+                            </ListItem>
+                        </Paper>
+                    )
                 ))}
-            </ul>
+            </List>
             {selectedUserId !== 0 && (
-                <form className="custom-form">
-                    <input
+                <Box component="form" className="custom-form" style={{ marginTop: '16px' }}>
+                    <TextField
                         type="text"
-                        placeholder="Enter name"
+                        label="Enter name"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
+                        fullWidth
+                        margin="normal"
                     />
-                    <input
+                    <TextField
                         type="text"
-                        placeholder="Enter email"
+                        label="Enter email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
+                        fullWidth
+                        margin="normal"
                     />
-                    <button type="button" onClick={updateUserData}>OK</button>
-                </form>
+                    <TextField
+                        type="password"
+                        label="Enter password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        fullWidth
+                        margin="normal"
+                    />
+                    <Button variant="contained" color="primary" onClick={updateUserData}>
+                        OK
+                    </Button>
+                </Box>
             )}
-
-        </div>
+        </Container>
     );
 };
 

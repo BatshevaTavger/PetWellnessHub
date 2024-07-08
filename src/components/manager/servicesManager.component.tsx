@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { addService, deleteService, getServices, updateService } from '../../api/services.api';
 import { Service } from '../../interfaces/service.interface';
+import { Button, Typography, Container, List, ListItem, ListItemText, TextField, Box, Paper } from '@mui/material';
+
 
 export const ServicesManager = () => {
     const [services, setServices] = useState<Service[]>([]);
@@ -45,63 +47,91 @@ export const ServicesManager = () => {
         setSelectedServiceId(0);
     };
 
-        const addMoreService = async () => {
+    const addMoreService = async () => {
         await addService(price, description);
-        setPrice(''); 
-        setDescription(''); 
+        setPrice('');
+        setDescription('');
         setGetService(!getService);
         setOnClickBTN(!onClickBTN)
     }
 
     return (
-        <div>
-            <h1>All Services</h1>
-            <ul>
+        <Container>
+            <Typography variant="h4" component="h1" gutterBottom>
+                All Services
+            </Typography>
+            <List>
                 {services.map(service => (
-                    <div key={service._id}>
-                        <h4>Description: {service.description} </h4>
-                        <strong>Price:</strong> {service.price}
-                        <button onClick={() => updateThisService(service._id)}>Update This Service</button>
-                        <button onClick={() => deleteThisService(service._id)}>Delete This Service</button>
-                    </div>
+                    <Paper elevation={3} key={service._id} style={{ marginBottom: '16px', padding: '16px', borderRadius: '8px' }}>
+                        <ListItem>
+                            <ListItemText
+                                primary={
+                                    <>
+                                        <Typography variant="body1"><strong>Description: </strong>{service.description}</Typography>
+                                        <Typography variant="body1"><strong>Price: </strong>{service.price}</Typography>
+                                    </>
+                                }
+                            />
+                            <Button variant="contained" color="primary" onClick={() => updateThisService(service._id)} style={{ marginRight: '8px' }}>
+                                Update This Service
+                            </Button>
+                            <Button variant="contained" color="secondary" onClick={() => deleteThisService(service._id)}>
+                                Delete This Service
+                            </Button>
+                        </ListItem>
+                    </Paper>
                 ))}
-            </ul>
+            </List>
             {selectedServiceId !== 0 && (
-                <form className="custom-form">
-                    <input
+                <Box component="form" className="custom-form">
+                    <TextField
                         type="text"
-                        placeholder="Enter price"
+                        label="Enter price"
                         value={price}
                         onChange={(e) => setPrice(e.target.value)}
+                        fullWidth
+                        margin="normal"
                     />
-                    <input
+                    <TextField
                         type="text"
-                        placeholder="Enter description"
+                        label="Enter description"
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
+                        fullWidth
+                        margin="normal"
                     />
-                    <button type="button" onClick={updateServiceData}>OK</button>
-                </form>
+                    <Button variant="contained" color="primary" onClick={updateServiceData}>
+                        OK
+                    </Button>
+                </Box>
             )}
-            <button onClick={() => setOnClickBTN(true)}>Add Service</button>
+            <Button variant="contained" color="warning" onClick={() => setOnClickBTN(true)} style={{ marginTop: '16px' }}>
+                Add Service
+            </Button>
             {onClickBTN && (
-                <form>
-                    <input
+                <Box component="form" className="custom-form" style={{ marginTop: '16px' }}>
+                    <TextField
                         type="text"
-                        placeholder="Enter price"
+                        label="Enter price"
                         value={price}
                         onChange={(e) => setPrice(e.target.value)}
+                        fullWidth
+                        margin="normal"
                     />
-                    <input
+                    <TextField
                         type="text"
-                        placeholder="Enter description"
+                        label="Enter description"
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
+                        fullWidth
+                        margin="normal"
                     />
-                    <button type="button" onClick={addMoreService}>OK</button>
-                </form>
+                    <Button variant="contained" color="primary" onClick={addMoreService}>
+                        OK
+                    </Button>
+                </Box>
             )}
-        </div>
+        </Container>
     );
 };
 
