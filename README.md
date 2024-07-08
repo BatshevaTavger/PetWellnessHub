@@ -7,11 +7,13 @@ This project is a pet veterinary management system that allows users to register
 To run the project, use the following command:
 `npm run dev`.
 
-This project relies on another Node.js project to act as a server. You can find the server project at the following repository link:
+This project relies on another Node.js project to act as a server. 
+You can find the server project at the following repository link:
 [Node Server]( https://github.com/AyalaDiamant/Final-Project-Node)
 
 
-Admin credentials
+
+## Admin credentials
 
 To access the administrative options, use the following credentials:
 
@@ -36,13 +38,17 @@ Admin interface
 
 ## Technologies in use
 
+- React
 - Node.js
 - Express.js
 - MongoDB
 - HTML/CSS
-- typeScript
-- @material - design library
+- TypeScript
+- Material Design
 
+
+  **React** + **Material Design**
+  
 
 ## How to use
 Pull the reservoir
