@@ -5,14 +5,14 @@ This project is a pet veterinary management system that allows users to register
 ## Starting
 
 To run the project, use the following command:
-npm run dev
+`npm run dev`
 
 Admin credentials
 
 To access the administrative options, use the following credentials:
 
-- Username: admin
-- Password: Admin1Admin
+- Username: `Aadmin`
+- Password: `Admin1Admin`
 
 ## Properties
 
