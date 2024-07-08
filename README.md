@@ -8,7 +8,7 @@ To run the project, use the following command:
 `npm run dev`.
 
 This project relies on another Node.js project to act as a server. 
-You can find the server project at the following repository link:
+You can find the server project at the following repository link: 
 [Node Server]( https://github.com/AyalaDiamant/Final-Project-Node)
 
 
@@ -38,16 +38,13 @@ Admin interface
 
 ## Technologies in use
 
-- React
+- **React**
+- **TypeScript**
 - Node.js
 - Express.js
 - MongoDB
 - HTML/CSS
-- TypeScript
 - Material Design
-
-
-  **React** + **Material Design**
   
 
 ## How to use
