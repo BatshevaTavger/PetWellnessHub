@@ -1,23 +1,18 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { register } from '../api/login.api';
 import { useNavigate } from 'react-router-dom';
-import { User } from '../interfaces/user.interface';
-import { CurrentContextUser } from '../context/user.context';
-// import { CurrentContextUser } from '../context/user.context';
 
 export const SignUp = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const currentUserContext = useContext(CurrentContextUser);
-    const { setCurrentUser } = currentUserContext;
     const navigate = useNavigate();
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
         try {
             const data = await register(name, email, password);
-            setCurrentUser(data.newUser as User);
+            localStorage.setItem('user-name', name);
             navigate('/');            
             console.log('Registration successful', data);
         } catch (error) {

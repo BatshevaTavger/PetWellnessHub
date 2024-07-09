@@ -1,14 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { getMeetings } from '../api/meet.api';
 import { Meeting as Meet } from '../interfaces/meeting.interface';
-import { CurrentContextUser } from '../context/user.context';
 
 export const Meeting = () => {
     const [meeting, setMeeting] = useState<Meet[]>([]);
-    const currentUserContext = useContext(CurrentContextUser);
-    const { currentUser } = currentUserContext; 
-
-    const userId = currentUser._id || localStorage.getItem('userId');
+    const userId = localStorage.getItem('userId') || null;
 
     useEffect(() => {
         const fetchData = async () => {
