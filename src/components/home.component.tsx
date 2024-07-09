@@ -1,16 +1,13 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, Route, Router } from 'react-router-dom';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 // import './index.css';
-import { CurrentContextUser } from '../context/user.context';
 
 const Home = () => {
     const [userName, setUserName] = useState('');
-    const currentUserContext = useContext(CurrentContextUser);
-    const { currentUser } = currentUserContext; 
 
     useEffect(() => {
-        const storedUserName = currentUser.name || localStorage.getItem('user-name');
+        const storedUserName = localStorage.getItem('user-name');
         if (storedUserName) {
             setUserName(storedUserName);
         }

@@ -1,8 +1,7 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { addMeeting } from '../api/meet.api';
 import { Link } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
-import { CurrentContextUser } from '../context/user.context';
 
 const AppointmentForm = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -10,10 +9,8 @@ const AppointmentForm = () => {
   const [selectedLocation, setSelectedLocation] = useState('');
   const [appointmentMessage, setAppointmentMessage] = useState('');
   const [noteToBusiness, setNoteToBusiness] = useState("");
-  const currentUserContext = useContext(CurrentContextUser);
-  const { currentUser } = currentUserContext; 
 
-  const userId = currentUser._id;
+  const userId = localStorage.getItem('userId') || null;
 
   const handleSubmit = async (event) => {
     event.preventDefault();

@@ -1,44 +1,36 @@
+// import React, { createContext, useState } from 'react';
 
-import { ReactNode, createContext, useEffect, useState } from 'react';
-import { User } from '../interfaces/user.interface';
 
-export type UserContext = {
-    currentUser: User;
-    setCurrentUser: (user: User) => void
-}
+// export const UserContext = createContext();
 
-const initialCurrentUser: User = {
-    _id: 0,
-    name: '',
-    password: '',
-    email: '',
-    isAdmin: true,
-};
+// export const UserProvider = ({ children }) => {
+//     const [user, setUser] = useState(null);
 
-const InitialContext: UserContext = {
-    currentUser: initialCurrentUser,
-    setCurrentUser: () => { }
-}
+//     return (
+//         <UserContext.Provider value={{ user, setUser }}>
+//             {children}
+//         </UserContext.Provider>
+//     );
+// };
 
-export const CurrentContextUser = createContext<UserContext>(InitialContext);
+// ------------ 
 
-export const CurrentUserProvider = ({ children }: { children: ReactNode }) => {
-    const [currentUser, setCurrentUsers] = useState<User>(initialCurrentUser);
-    
-    useEffect(() => {
-        localStorage.setItem('currentUser', JSON.stringify(currentUser))
-    }, [currentUser]);
+// import { createContext, useState } from "react";
+// import { User } from "../interfaces/user.interface";
 
-    const setCurrentUser = (user: User) => {
-        alert('hii')
-        console.log(user, 'in context')
-        setCurrentUsers(user);
-        console.log(currentUser, 'oioioio')
-    }
-    
-    return (
-        <CurrentContextUser.Provider value={{ currentUser, setCurrentUser }}>
-            {children}
-        </CurrentContextUser.Provider>
-    );
-};
+// interface UserContextValue {
+//   user: User | null;
+//   setUser: (userName: string|null, userId: number|null) => void;
+// }
+
+// export const UserContext = createContext<UserContextValue>(null);
+
+// export const UserProvider = ({ children }) => {
+//   const [user, setUser] = useState<User | null>(null); // Specify initial user type
+
+//   return (
+//     <UserContext.Provider value={{ user, setUser }}>
+//       {children}
+//     </UserContext.Provider>
+//   );
+// };
